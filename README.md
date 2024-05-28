@@ -62,17 +62,17 @@ Follow these steps to set up the project on your local machine.
 ## Usage
 
 ### QR Code Generator
-- Navigate to `/qr-generator/`.
+- Navigate to `/qr`.
 - Enter the text you want to encode.
 - Click "Generate QR Code" to create and display the QR code.
 
 ### URL Shortener
-- Navigate to `/url-shortener/`.
+- Navigate to `/url`.
 - Enter the long URL you want to shorten.
 - Click "Shorten URL" to get the shortened URL.
 
 ### Map Game
-- Navigate to `/map-game/`.
+- Navigate to `/game`.
 - You will be presented with two points representing countries.
 - Guess where the third point (country) is located by clicking on the map.
 
