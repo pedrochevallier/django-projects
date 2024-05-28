@@ -1,0 +1,12 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.mainBody{
+    background-color: rgb(51,51,51);
+    @import 'joinScreen';
+    @import 'lobbyScreen';
+    @import 'mapScreen';
+}

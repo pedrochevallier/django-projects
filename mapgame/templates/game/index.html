@@ -1,0 +1,383 @@
+<!-- game/templates/game/index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>The Map Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'game/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="mainBody">
+    <div class="joinScreen" id="joinScreen" style>
+        <h1>The Map Game</h1>
+        <p class="label">Enter your name</p>
+        <input type="text" id="userName" name="userName" required autofocus>
+        <button id="joinButton" onclick="showLobby()">Play!</button>
+        <h3>About this game</h3>
+        <p>You are given two random countries and using triangulation you have to
+            guess where the third one is. GOOD LUCK!
+        </p>
+    </div>
+    <div class="lobbyScreen" id="lobbyScreen" style>
+        <h1>Lobby</h1>
+        <input class="game-url" value="localhost/game/{{roomName}}" maxlength="30" readonly><br>
+        <div class="gameConf">
+            <section class="usersLobby">
+                <div class="user">
+                    <p id="user1"></p>
+                </div>
+                <div class="user">
+                    <p id="user2"></p>
+                </div>
+                <div class="user">
+                    <p id="user3"></p>
+                </div>
+                <div class="user">
+                    <p id="user4"></p>
+                </div>
+                <div class="user">
+                    <p id="user5"></p>
+                </div>
+                <div class="user">
+                    <p id="user6"></p>
+                </div>
+                <div class="user">
+                    <p id="user7"></p>
+                </div>
+                <div class="user">
+                    <p id="user8"></p>
+                </div>
+            </section>
+        </div>
+        <div>
+            <button id="playButton" disabled="True" onclick="startGame()">Play!</button>
+        </div>
+    </div>
+    <div class="mapScreen" id="mapScreen" style>
+        <div class="usersMap">
+            <div class="user" id="divUser1">
+                <p id="muser1"></p>
+                <p id="mUserScore1"></p>
+            </div>
+            <div class="user" id="divUser2">
+                <p id="muser2"></p>
+                <p id="mUserScore2"></p>
+            </div>
+            <div class="user" id="divUser3">
+                <p id="muser3"></p>
+                <p id="mUserScore3"></p>
+            </div>
+            <div class="user" id="divUser4">
+                <p id="muser4"></p>
+                <p id="mUserScore4"></p>
+            </div>
+            <div class="user" id="divUser5">
+                <p id="muser5"></p>
+                <p id="mUserScore5"></p>
+            </div>
+            <div class="user" id="divUser6">
+                <span>
+                    <p id="muser6"></p>
+                </span>
+                <p id="mUserScore6"></p>
+            </div>
+            <div class="user" id="divUser7">
+                <p id="muser7"></p>
+                <p id="mUserScore7"></p>
+            </div>
+            <div class="user" id="divUser8">
+                <p id="muser8"></p>
+                <p id="mUserScore8"></p>
+            </div>
+        </div>
+        <div>
+            <div id="clickme" class="clickme">
+                <div id="first" class="primerPais" style='display:none'></div>
+                <div id="second" class="segundoPais" style='display:none'></div>
+                <div id="dot" class="dot" style='visibility:hidden'></div>
+                <div id="correct" class="correct" style="display:none"></div>
+                <h1 id="mapText" class="mapText"></h1>
+                <div id="guser1" class="guser1"></div>
+                <div id="guser2" class="guser2"></div>
+                <div id="guser3" class="guser3"></div>
+                <div id="guser4" class="guser4"></div>
+                <div id="guser5" class="guser5"></div>
+                <div id="guser6" class="guser6"></div>
+                <div id="guser7" class="guser7"></div>
+                <div id="guser8" class="guser8"></div>
+            </div>
+        </div>
+        <div class="clock" id="clock">
+            <h1 class="time" id="time">
+                10
+            </h1>
+            <div class="listFirstCountry">
+                <h3 id="listFirstCountry">
+
+                </h3>
+            </div>
+            <div class="listSecondCountry">
+                <h3 id="listSecondCountry">
+
+                </h3>
+            </div>
+            <div class="listThirdCountry" id="correctCountry">
+                <h3 id="listThirdCountry">
+
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="nextButton" id="nextButton">
+        <button class="nextRound" id="nextRound" onclick="nextRound()">Next Round</button>
+    </div>
+
+    <script>
+        const userid = '{{userid}}';
+        const userColor = '{{userColor}}';
+        let isKing = '{{isKing}}';
+
+        const lobbySocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/lobby/'
+            + "{{roomName}}"
+            + '/'
+        );
+        var input = document.getElementById("userName");
+        input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              document.getElementById("joinButton").click();
+            }
+          });
+
+        const lobbyElement = document.getElementById('lobbyScreen');
+        lobbyElement.style.display = 'none';
+        const mapScreen = document.getElementById('mapScreen');
+        mapScreen.style.display = 'none';
+        const nextButton = document.getElementById('nextButton');
+        nextButton.style.display = 'none';
+
+        function showLobby() {
+            const userName = document.getElementById('userName').value;
+            lobbySocket.send(JSON.stringify({
+                'action': 'new_user',
+                'userID': userid,
+                'userName': userName,
+                'userColor': userColor,
+                'isKing': isKing,
+            }));
+            hasGameStarted();
+            const joinElement = document.getElementById('joinScreen');
+            joinElement.style.display = 'none';
+            const lobbyElement = document.getElementById('lobbyScreen');
+            lobbyElement.style.display = '';
+        };
+
+        function showMap() {
+            for (let i = 0; i < 8; i++) {
+                document.getElementById('guser' + (i + 1)).style.visibility = 'hidden';
+            }
+            document.getElementById('first').style.display = 'none';
+            document.getElementById('second').style.display = 'none';
+            document.getElementById('correct').style.display = 'none';
+            document.getElementById('listFirstCountry').innerHTML = '';
+            document.getElementById('listSecondCountry').innerHTML = '';
+            document.getElementById('listThirdCountry').innerHTML = '';
+            document.getElementById('time').innerText = '10';
+            document.getElementById('dot').style = '';
+            document.getElementById('dot').style.background = userColor;
+            document.getElementById('dot').style.visibility = 'hidden';
+            document.getElementById('clickme').style.pointerEvents = '';
+            document.getElementById('guser1').style.visibility = 'hidden';
+            const element3 = document.getElementById('lobbyScreen');
+            element3.style.display = 'none';
+            const element4 = document.getElementById('mapScreen');
+            element4.style = '';
+        };
+
+        lobbySocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            if (data.action == 'user') {
+                for (let i = 0; i < data.message.length; i++) {
+                    document.getElementById('user' + (i + 1)).innerText = data.message[i]['userName'];
+                    document.getElementById('muser' + (i + 1)).innerText = data.message[i]['userName'];
+                    document.getElementById('mUserScore' + (i + 1)).innerText = ('Score: ' + data.message[i]['userScore']);
+                    document.getElementById('divUser' + (i + 1)).style.background = data.message[i]['userColor'];
+                    document.getElementById('guser' + (i + 1)).style.background = data.message[i]['userColor'];
+                    document.getElementById('guser' + (i + 1)).classList.add(data.message[i]['uniqueUID']);
+                    if (data.message[i]['uniqueUID'] == '{{userid}}') {
+                        document.getElementById('dot').style.background = data.message[i]['userColor'];
+                    }
+                    if (data.message[i]['isKing'] == '1' && data.message[i]['uniqueUID'] == '{{userid}}') {
+                        document.getElementById('playButton').disabled = false;
+                    }
+                };
+                for (let i = data.message.length; i < 8; i++) {
+                    document.getElementById('user' + (i + 1)).innerText = '';
+                    document.getElementById('muser' + (i + 1)).innerText = '';
+                    document.getElementById('mUserScore' + (i + 1)).innerText = '';
+                    document.getElementById('divUser' + (i + 1)).style = '';
+                }
+            }
+            if (data.action == 'gameStarted' && document.getElementById('mapScreen').style.display === 'none') {
+                showMap();
+                document.getElementById('clickme').style.background = 'rgba(26, 26, 26, 0.64)';
+                document.getElementById('mapText').style = '';
+                document.getElementById('mapText').textContent = 'Game will start on next round!';
+            }
+            if (data.action == 'starGame') {
+                showMap();
+                let coordinates = data.message;
+                round(coordinates);
+            }
+            if (data.action == 'userScores') {
+                document.getElementById('first').style.display = 'none';
+                document.getElementById('second').style.display = 'none';
+                for (let i = 0; i < data.message.length; i++) {
+                    document.getElementById('mUserScore' + (i + 1)).innerText = ('Score: ' + data.message[i]['userScore']);
+                };
+                let setPosition = document.getElementsByClassName(data.coordinates.userID);
+                if (data.coordinates.userID != '{{userid}}') {
+                    setPosition[0].style.left = data.coordinates.xcoordinate - 4.5 + "px";
+                    setPosition[0].style.top = data.coordinates.ycoordinate - 4.5 + "px";
+                    setPosition[0].style.visibility = 'visible';
+                }
+                const element4 = document.getElementById('nextButton');
+                element4.style = '';
+            };
+        };
+
+        lobbySocket.onclose = function (e) {
+            console.log('Socket closed');
+        };
+
+        function startGame() {
+            let rounds = -1 ;
+            lobbySocket.send(JSON.stringify({
+                'action': 'startGame',
+                'rounds': rounds,
+            }));
+        }
+
+        function nextRound() {
+            lobbySocket.send(JSON.stringify({
+                'action': 'startGame',
+            }));
+        }
+
+        document.getElementById('clickme').onclick = function clickEvent(e) {
+            // e = Mouse click event.
+            document.getElementById('dot').style.visibility = 'visible';
+            let rect = e.target.getBoundingClientRect();
+            let x = e.clientX - rect.left; //x position within the element.
+            let y = e.clientY - rect.top;  //y position within the element.
+            x = x - 4.5;
+            y = y - 4.5;
+            let dot = document.getElementById('dot');
+            dot.style.top = y + "px";
+            dot.style.left = x + "px";
+            //<li class="forDot" style="top: {{ value.y }}px; left: {{ value.x }}px">{{ key }}</li>
+        }
+
+        function round(coordinates) {
+            const nextButton = document.getElementById('nextButton');
+            nextButton.style.display = 'none';
+            const mapText = document.getElementById('mapText');
+
+            document.getElementById('clickme').style.background = 'rgba(26, 26, 26, 0.64)';
+            mapText.style = '';
+            mapText.textContent = 'If this is ' + coordinates['country1'] + ' ...';
+            setTimeout(function () {
+                mapText.style.display = 'none';
+                document.getElementById('clickme').style.background = 'white';
+                document.getElementById('first').style = '';
+                let primerPais = document.getElementById('first');
+                primerPais.style.top = (coordinates['c1y'] - 4.5) + "px";
+                primerPais.style.left = (coordinates['c1x'] - 4.5) + "px";
+                document.getElementById('listFirstCountry').innerHTML = (" " + coordinates['country1'] + " ");
+                setTimeout(function () {
+                    document.getElementById('clickme').style.background = 'rgba(26, 26, 26, 0.64)';
+                    mapText.style = '';
+                    mapText.textContent = '...and this is ' + coordinates['country2'];
+                    setTimeout(function () {
+                        mapText.style.display = 'none';
+                        document.getElementById('clickme').style.background = 'white';
+                        document.getElementById('second').style = '';
+                        let segundoPais = document.getElementById('second');
+                        segundoPais.style.top = (coordinates['c2y'] - 4.5) + "px";
+                        segundoPais.style.left = (coordinates['c2x'] - 4.5) + "px";
+                        document.getElementById('listSecondCountry').innerHTML = (" " + coordinates['country2'] + " ");
+                        setTimeout(function () {
+                            document.getElementById('clickme').style.background = 'rgba(26, 26, 26, 0.64)';
+                            mapText.style = '';
+                            mapText.textContent = 'Where is  ' + coordinates['country3'] + '?';
+                            document.getElementById('listThirdCountry').innerHTML = (" " + coordinates['country3'] + " ");
+                            setTimeout(function () {
+                                mapText.style.display = 'none';
+                                document.getElementById('clickme').style.background = 'white';
+                                let tenSeconds = 9,
+                                    display = document.querySelector('#time');
+                                startTimer(tenSeconds, display);
+                                setTimeout(function () {
+                                    document.getElementById('clickme').style.pointerEvents = 'none';
+                                    document.getElementById('clickme').style.background = '';
+                                    document.getElementById('correct').style = '';
+                                    let correct = document.getElementById('correct');
+                                    correct.style.left = (coordinates['c3x'] - 4.5) + "px";
+                                    correct.style.top = (coordinates['c3y'] - 4.5) + "px";
+                                    document.getElementById('correctCountry').style.background = 'rgb(219, 111, 22)';
+                                    let userDot = document.getElementById('dot');
+                                    userY = parseInt(userDot.style.top) + 4.5;
+                                    userX = parseInt(userDot.style.left) + 4.5;
+                                    let xdif = parseInt(coordinates['c3x']) - userX;
+                                    let ydif = parseInt(coordinates['c3y']) - userY;
+                                    userID = '{{userid}}'
+                                    lobbySocket.send(JSON.stringify({
+                                        'action': 'roundFinished',
+                                        'userID': userID,
+                                        'userx': xdif,
+                                        'usery': ydif,
+                                        'x': userX,
+                                        'y': userY,
+                                    }));
+                                }, 10000);
+                            }, 1500);
+                        }, 1500);
+                    }, 1500);
+                }, 1500);
+            }, 1500);
+        }
+
+
+        function startTimer(duration, display) {
+            let timer = duration, seconds;
+            refreshIntervalId = setInterval(function () {
+                seconds = parseInt(timer % 60, 10);
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = seconds;
+                timer = timer - 1;
+                if (timer < 0) {
+                    clearInterval(refreshIntervalId);
+                };
+            }, 1000);
+        };
+
+        function hasGameStarted() {
+            lobbySocket.send(JSON.stringify({
+                'action': 'hasGameStarted',
+            }));
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="mapStyle.css" type="text/css">
+
+
+</head>
+<body class="body">
+    <p>Fijate en data.json cual es el 
+        ultimo pais que se ingreso.
+    </p>
+    <p>Corre el archivo de python e ingresa      por terminal
+        el siguiente pais a ingresar, lo marcas en el mapa (en su centro geografico) y abajo te dice que poner en X y en Y.</p>
+    <p>Se puede hacer zoom en el mapa que no cambia la coordenada. Ingresa los numeros sin decimales</p>
+    <div id="clickme" class="main-div">
+        <div id="dot" class="dot"></div>
+    </div>
+    <div class="point">
+        <p id="left">x: </p>
+        <p id="right">y: </p>
+    </div>
+    
+</body>
+<script>
+    document.getElementById('clickme').onclick = function clickEvent(e) {
+    var left = document.getElementById('left');
+    var right = document.getElementById('right');
+        // e = Mouse click event.
+      var rect = e.target.getBoundingClientRect();
+      var x = e.clientX - rect.left; //x position within the element.
+      var y = e.clientY - rect.top;  //y position within the element.
+      left.innerText = "x: " + x;
+      right.innerText = "y: " + y;
+      console.log("Left? : " + x + " ; Top? : " + y + ".");
+      x = x - 4.5;
+      y = y - 4.5;
+      var dot = document.getElementById('dot');
+      dot.style.top = y + "px";
+      dot.style.left = x + "px";
+      //<li class="forDot" style="top: {{ value.y }}px; left: {{ value.x }}px">{{ key }}</li>
+    }
+</script>
+</html>

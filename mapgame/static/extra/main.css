@@ -1,0 +1,374 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.mainBody {
+  background-color: rgb(51, 51, 51);
+}
+.mainBody .joinScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  padding: 10px;
+  color: rgb(245, 243, 245);
+  width: 20vw;
+  text-align: center;
+  margin: auto;
+  margin-top: 20vh;
+}
+.mainBody .joinScreen .label {
+  padding-bottom: 10px;
+}
+.mainBody .joinScreen h1 {
+  padding-bottom: 50px;
+}
+.mainBody .joinScreen input {
+  width: 200px;
+  margin-bottom: 10px;
+  outline: 0;
+  border: none;
+  background-color: transparent;
+  color: rgb(245, 243, 245);
+  border-color: rgb(245, 243, 245);
+  border-bottom: 2px solid;
+}
+.mainBody .joinScreen button {
+  width: -moz-fit-content;
+  width: fit-content;
+  border: none;
+  background-color: transparent;
+  color: rgb(245, 243, 245);
+  padding: 3px;
+}
+.mainBody .joinScreen h3 {
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+.mainBody .joinScreen button:hover {
+  background-color: rgb(245, 243, 245);
+  color: rgb(51, 51, 51);
+  border-radius: 5px;
+  padding: 3px;
+}
+.mainBody .lobbyScreen {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 20vw;
+  text-align: center;
+  margin: auto;
+  margin-top: 20vh;
+}
+.mainBody .lobbyScreen h1 {
+  color: rgb(245, 235, 245);
+  padding-bottom: 15px;
+}
+.mainBody .lobbyScreen input {
+  border: none;
+  color: rgb(245, 235, 245);
+  background-color: transparent;
+  border-bottom: solid 2px;
+  padding-left: 5px;
+  padding-left: 5px;
+  text-align: center;
+}
+.mainBody .lobbyScreen input:focus-visible {
+  border: none;
+  border-bottom: solid 2px;
+  outline: none;
+}
+.mainBody .lobbyScreen input::-moz-selection {
+  background: rgb(245, 235, 245);
+  color: rgb(51, 51, 51);
+}
+.mainBody .lobbyScreen input::selection {
+  background: rgb(245, 235, 245);
+  color: rgb(51, 51, 51);
+}
+.mainBody .lobbyScreen .gameConf {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+}
+.mainBody .lobbyScreen .gameConf .usersLobby {
+  display: flex;
+  flex-wrap: wrap;
+  width: 20vw;
+  padding: 5px;
+}
+.mainBody .lobbyScreen .gameConf .usersLobby .user {
+  display: flex;
+  flex-direction: column;
+  width: 85px;
+  height: 50px;
+  padding: 5px;
+  justify-content: center;
+  color: rgb(245, 235, 245);
+}
+.mainBody .lobbyScreen div button {
+  background-color: transparent;
+  width: 200px;
+  height: 40px;
+  border: none;
+  color: rgb(245, 235, 245);
+}
+.mainBody .lobbyScreen div button:hover {
+  background-color: rgb(245, 235, 245);
+  color: rgb(51, 51, 51);
+  border-radius: 10px;
+  font-size: larger;
+  font-weight: bold;
+}
+.mainBody .mapScreen {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  margin: auto;
+}
+.mainBody .mapScreen .usersMap {
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  margin: 10px;
+}
+.mainBody .mapScreen .usersMap .user {
+  display: flex;
+  flex-direction: column;
+  width: 85px;
+  height: 50px;
+  padding: 5px;
+  justify-content: center;
+}
+.mainBody .mapScreen .clickme {
+  background-image: url("./map.PNG");
+  position: relative;
+  background-size: 1200px;
+  border-style: solid;
+  border-width: 1px;
+  height: 689px;
+  width: 1200px;
+  margin: 10px;
+  z-index: 1;
+  cursor: crosshair;
+}
+.mainBody .mapScreen .clickme .dot {
+  background-color: red;
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .primerPais {
+  background-color: rgb(102, 167, 49);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .segundoPais {
+  background-color: rgb(25, 22, 219);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .correct {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .userDot {
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .mapText {
+  padding: 0;
+  margin: 10px;
+  position: relative;
+  height: 689px;
+  width: 1200px;
+  z-index: 1;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .guser1 {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .guser2 {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .guser3 {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .guser4 {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .guser5 {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .guser6 {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .guser7 {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clickme .guser8 {
+  background-color: rgb(219, 111, 22);
+  padding: 0;
+  margin: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  pointer-events: none;
+}
+.mainBody .mapScreen .clock {
+  margin: 10px;
+  width: auto;
+}
+.mainBody .mapScreen .clock .listFirstCountry {
+  background-color: rgb(102, 167, 49);
+  text-align: center;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+.mainBody .mapScreen .clock .listSecondCountry {
+  background-color: rgb(25, 22, 219);
+  text-align: center;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+.mainBody .mapScreen .clock .listThirdCountry {
+  text-align: center;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+.mainBody .nextButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+.mainBody .nextButton .nextRound {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  padding: 15px;
+  border: none;
+  background-color: transparent;
+  color: rgb(245, 243, 245);
+  font-size: 20px;
+}
+.mainBody .nextButton .nextRound:hover {
+  cursor: grab;
+}/*# sourceMappingURL=main.css.map */

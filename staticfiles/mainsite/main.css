@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Roboto", sans-serif;
+}
+* ::-webkit-scrollbar {
+  width: 4px;
+}
+* ::-webkit-scrollbar-track {
+  background: rgb(205, 205, 211);
+}
+* ::-webkit-scrollbar-thumb {
+  background: rgb(44, 43, 43);
+  border-radius: 4px;
+}
+
+.body body::-webkit-scrollbar {
+  display: none;
+}
+.body .main {
+  display: flex;
+  flex-direction: column;
+}
+.body .main .header {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0px 0px 20px 20px;
+  position: fixed;
+  top: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+}
+.body .main .header a {
+  text-decoration: none;
+  margin: 10px;
+  color: black;
+  font-size: 20px;
+  padding: 10px;
+}
+.body .main .header .active {
+  background-color: rgb(221, 221, 221);
+  border-radius: 30px;
+  transition: 0.3s;
+}
+.body .main .home-section {
+  background-image: url("./img4.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100vh;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.body .main .home-section .name {
+  padding-top: 30vh;
+  color: black;
+  font-size: 80px;
+}
+.body .main .home-section .career {
+  color: black;
+  font-size: 18px;
+}
+.body .main .home-section .icon {
+  display: none;
+}
+.body .main .about-section {
+  height: 100vh;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.body .main .about-section p {
+  line-height: 50px;
+  width: 60vw;
+  color: black;
+  font-size: 20px;
+}
+.body .main .projects-section {
+  height: 100vh;
+  background-image: url("./img5.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.body .main .projects-section div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.body .main .projects-section div .project {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  margin: 20px;
+  min-width: 130px;
+}
+.body .main .projects-section div .project a {
+  color: black;
+  text-decoration: none;
+}
+.body .main .projects-section div .project a .project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+.body .main .projects-section div .project a .project-card i {
+  font-size: 55px;
+  margin: 10px;
+}
+.body .main .projects-section div .project a .project-card h4 {
+  size: 55px;
+}
+.body .main .education-section {
+  height: 100vh;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.body .main .education-section div .college {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+}
+.body .main .education-section div .college img {
+  background-color: white;
+  border-radius: 5px;
+  width: 80px;
+  height: auto;
+  margin: 20px;
+}
+.body .main .education-section div .college div {
+  margin-right: 10px;
+}
+.body .main .with-image {
+  background-image: url("./img3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.body .main .contact-section {
+  height: 100vh;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.body .main .contact-section h2 {
+  font-size: 40px;
+  padding-top: 60px;
+}
+.body .main .contact-section .tab {
+  padding: 30px;
+}
+.body .main .contact-section .tab .tablink {
+  border: none;
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 18px;
+}
+.body .main .contact-section .tab .active {
+  background-color: black;
+  color: white;
+}
+.body .main .contact-section .tab .tablink:hover {
+  background-color: black;
+  color: white;
+}
+.body .main .contact-section .tabcontent {
+  height: 300px;
+}
+.body .main .contact-section .tabcontent .form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+.body .main .contact-section .tabcontent .form .inputs {
+  margin-bottom: 10px;
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+.body .main .contact-section .tabcontent .form .inputs:focus {
+  outline: none;
+  border-bottom: 1px solid black;
+}
+.body .main .contact-section .tabcontent .form .cc {
+  margin: 5px;
+}
+.body .main .contact-section .tabcontent .form .submit {
+  display: flex;
+  justify-content: center;
+}
+.body .main .contact-section .tabcontent .form .submit .submit-button {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: white;
+  color: black;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-items: center;
+}
+.body .main .contact-section .tabcontent .form .submit .submit-button:hover {
+  background-color: black;
+  color: white;
+}
+.body .main .contact-section .tabcontent .qr img {
+  height: 300px;
+  width: auto;
+}
+
+.tabcontent {
+  display: none;
+  min-height: 3rem;
+  padding: 6px 12px;
+}
+
+@media only screen and (max-width: 780px) {
+  .body .main .header a {
+    font-size: 10px;
+  }
+  .body .main .home-section .icon {
+    display: none;
+  }
+  .body .main .about-section p {
+    line-height: 30px;
+    width: 60vw;
+    font-size: 15px;
+  }
+  .body .main .projects-section div {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .body .main .header {
+    display: none;
+  }
+  .body .main .home-section {
+    background-attachment: scroll;
+  }
+  .body .main .home-section .name {
+    padding-top: 15vh;
+    font-size: 30px;
+  }
+  .body .main .home-section .career {
+    font-size: 10px;
+  }
+  .body .main .home-section .icon {
+    display: block;
+    padding-top: 40vh;
+    color: white;
+    font-size: 40px;
+  }
+  .body .main .about-section p {
+    line-height: 25px;
+    font-size: 14px;
+  }
+  .body .main .projects-section {
+    background-attachment: scroll;
+  }
+  .body .main .education-section div .college {
+    margin: 5px;
+  }
+  .body .main .education-section div .college img {
+    width: 50px;
+    margin: 10px;
+  }
+  .body .main .education-section div .college div h2 {
+    font-size: 20px;
+  }
+  .body .main .education-section div .college div p {
+    font-size: 12px;
+  }
+  .body .main .with-image {
+    background-attachment: scroll;
+  }
+}/*# sourceMappingURL=main.css.map */

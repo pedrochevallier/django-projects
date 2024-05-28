@@ -1,0 +1,69 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main-div{
+    background-image: url('./map.PNG');
+    position: relative;
+    background-size: 1200px;
+    border-style: solid;
+    border-width: 1px;
+    height: 689px;
+    width: 1200px;
+    margin: 10px;
+    z-index: 1;
+    cursor: crosshair;
+}
+
+.body p{
+    padding-top: 5px;
+    padding-left: 20px;
+    
+}
+
+
+.dot{
+    background-color: red;
+    padding: 0;
+    margin: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.primerPais{
+    background-color: rgb(102, 167, 49);
+    padding: 0;
+    margin: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.segundoPais{
+    background-color: rgb(25, 22, 219);
+    padding: 0;
+    margin: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    pointer-events: none;
+}
+.point{
+    padding-left: 20px;
+}

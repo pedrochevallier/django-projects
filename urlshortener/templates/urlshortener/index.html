@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'urlshortener/main.css' %}">
+    <script src="https://kit.fontawesome.com/28aaae96af.js" crossorigin="anonymous"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'urlshortener/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'urlshortener/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'urlshortener/favicon-16x16.png' %}">
+    <title>PC - URL Shortener</title>
+</head>
+
+<body>
+    <div class="main">
+        <label class="main-label" for="url">Enter URL</label>
+        <input class="main-input" type="text" name="url" id="input">
+        <button class="main-button" onclick="getshort()" id="input-button">Submit</button>
+    </div>
+    <div class="warning">
+        <p>WARNING! While totally functional, it's still a work in progress.</p>
+    </div>
+    <div class="return" id="return" style="visibility: hidden;">
+        <p class="return-response" id="response"></p>
+        <button class="response-button" onclick="copy()" id="response-button"><i class="fa-regular fa-copy"></i></button>
+    </div>
+</body>
+<script>
+    function getCookie(name) {
+
+        let cookie = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return cookie ? cookie[2] : null;
+    }
+
+    function getshort() {
+
+        const url_to_shorten = document.getElementById("input");
+        const shortened_url = document.getElementById("response");
+        const responseText = document.getElementById("return");
+        responseText.style.visibility = 'hidden';
+
+        if (url_to_shorten.value.length > 6) {
+            fetch('/url/create', {
+                method: 'post',
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken"),
+                },
+                body: JSON.stringify({ "url": url_to_shorten.value })
+            })
+                .then(response => response.json())
+                .then(json => setText(json))
+            url_to_shorten.value = '';
+        }
+    }
+
+    function setText(json){
+        const responseText = document.getElementById("return");
+
+        if(json[0].url != 'ERROR. The page contains harmfull content'){
+            response.innerText = document.URL + json[0].url;
+            responseText.style.visibility = "visible";
+        }else{
+            response.innerText = json[0].url;
+            responseText.style.visibility = "visible";
+        }
+    }
+
+    function copy() {
+        const copyText = document.getElementById("response");
+
+        navigator.clipboard.writeText(copyText.innerHTML);
+        console.log(copyText.innerHTML)
+
+        // Alert the copied text
+        alert("Copied the text: " + copyText.innerHTML);
+    }
+
+    // Get the input field
+    const input = document.getElementById("input");
+
+    // Execute a function when the user presses a key on the keyboard
+    input.addEventListener("keypress", function (event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            getshort();
+        }
+    });
+
+</script>
+
+</html>

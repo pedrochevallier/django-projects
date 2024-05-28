@@ -1,0 +1,267 @@
+.mapScreen {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    margin: auto;
+
+    .usersMap {
+        border-style: solid;
+        border-width: 1px;
+        display: flex;
+        flex-direction: column;
+        width: 20vw;
+        margin: 10px;
+
+        .user {
+            display: flex;
+            flex-direction: column;
+            width: 85px;
+            height: 50px;
+            padding: 5px;
+            justify-content: center;
+
+        }
+    }
+
+    .clickme {
+        //background-color: white;
+        background-image: url('./map.PNG');
+        position: relative;
+        background-size: 1200px;
+        border-style: solid;
+        border-width: 1px;
+        height: 689px;
+        width: 1200px;
+        margin: 10px;
+        z-index: 1;
+        cursor: crosshair;
+
+        .dot {
+            background-color: red;
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .primerPais {
+            background-color: rgb(102, 167, 49);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .segundoPais {
+            background-color: rgb(25, 22, 219);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .correct {
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .userDot{
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+
+        .mapText {
+            padding: 0;
+            margin: 10px;
+            position: relative;
+            //top: 50%;
+            //left: 50%;
+            height: 689px;
+            width: 1200px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .guser1{
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .guser2{
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .guser3{
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .guser4{
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .guser5{
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .guser6{
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .guser7{
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .guser8{
+            background-color: rgb(219, 111, 22);
+            padding: 0;
+            margin: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            pointer-events: none;
+        }
+    }
+
+
+    .clock {
+        margin: 10px;
+        width: auto;
+        .listFirstCountry{
+            background-color: rgb(102, 167, 49);
+            text-align: center;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        .listSecondCountry{
+            background-color: rgb(25, 22, 219);
+            text-align: center;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        .listThirdCountry{
+            text-align: center;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+    }
+
+}
+.nextButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    .nextRound{
+        max-width: fit-content;
+        padding: 15px;
+        border: none;
+        background-color: transparent;
+        color: rgb(245,243,245);
+        font-size: 20px;
+    }
+    .nextRound:hover{
+        cursor: grab;
+    }
+}

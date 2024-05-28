@@ -1,0 +1,45 @@
+<!-- cards_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards Example</title>
+    <style>
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        .card a {
+            display: block;
+            margin-top: 8px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .card a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for card in cards %}
+            <div class="card">
+                <h2>{{ card.title }}</h2>
+                <p>{{ card.description }}</p>
+                <a href="{{ card.link }}">Go to {{ card.title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
